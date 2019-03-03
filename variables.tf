@@ -106,10 +106,6 @@ variable "s3_configuration_bucket" {
   type = "string"
 }
 
-variable "s3_files_bucket" {
-  type = "string"
-}
-
 variable "additional_security_groups" {
   type    = "list"
   default = []
