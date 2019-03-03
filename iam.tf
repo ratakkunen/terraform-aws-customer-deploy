@@ -70,39 +70,6 @@ data "aws_iam_policy_document" "to_s3_bucket" {
   }
 }
 
-# Policy: S3 files from EC2
-data "aws_iam_policy_document" "to_s3_files_bucket" {
-  statement {
-    sid     = "ListBuckets"
-    effect  = "Allow"
-    actions = ["s3:ListBucket"]
-
-    resources = [
-      "arn:aws:s3:::${local.s3_interfaces_bucket}",
-      "arn:aws:s3:::${local.s3_origination_bucket}",
-      "arn:aws:s3:::${local.s3_insurance_bucket}",
-      "arn:aws:s3:::${local.s3_bank_bucket}",
-    ]
-  }
-
-  statement {
-    sid     = "CRUDObjects"
-    effect  = "Allow"
-    actions = ["s3:*"]
-
-    resources = [
-      "arn:aws:s3:::${local.s3_interfaces_bucket}",
-      "arn:aws:s3:::${local.s3_interfaces_bucket}/*",
-      "arn:aws:s3:::${local.s3_origination_bucket}",
-      "arn:aws:s3:::${local.s3_origination_bucket}/*",
-      "arn:aws:s3:::${local.s3_insurance_bucket}",
-      "arn:aws:s3:::${local.s3_insurance_bucket}/*",
-      "arn:aws:s3:::${local.s3_bank_bucket}",
-      "arn:aws:s3:::${local.s3_bank_bucket}/*",
-    ]
-  }
-}
-
 # Policy: IAM SendCommand
 data "aws_iam_policy_document" "ssm_sendcommand" {
   statement {
@@ -167,12 +134,6 @@ resource "aws_iam_policy" "to_s3_bucket" {
   policy      = "${data.aws_iam_policy_document.to_s3_bucket.json}"
 }
 
-resource "aws_iam_policy" "to_s3_files_bucket" {
-  name_prefix = "cust_${var.customer_name}_to_S3_interfaces_"
-  description = "S3 access from EC2 for ${var.customer_name} interface files"
-  policy      = "${data.aws_iam_policy_document.to_s3_files_bucket.json}"
-}
-
 resource "aws_iam_role_policy_attachment" "il_to_s3_bucket" {
   role       = "${aws_iam_role.infolease_instance_role.name}"
   policy_arn = "${aws_iam_policy.to_s3_bucket.arn}"
@@ -186,16 +147,6 @@ resource "aws_iam_role_policy_attachment" "rpt_to_s3_bucket" {
 resource "aws_iam_role_policy_attachment" "rapport_to_s3_bucket" {
   role       = "${aws_iam_role.rapport_instance_role.name}"
   policy_arn = "${aws_iam_policy.to_s3_bucket.arn}"
-}
-
-resource "aws_iam_role_policy_attachment" "il_to_s3_files_bucket" {
-  role       = "${aws_iam_role.infolease_instance_role.name}"
-  policy_arn = "${aws_iam_policy.to_s3_files_bucket.arn}"
-}
-
-resource "aws_iam_role_policy_attachment" "rpt_to_s3_files_bucket" {
-  role       = "${aws_iam_role.reporting_instance_role.name}"
-  policy_arn = "${aws_iam_policy.to_s3_files_bucket.arn}"
 }
 
 # Policy: Route 53 from EC2
