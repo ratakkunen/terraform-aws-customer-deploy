@@ -19,6 +19,7 @@ data "template_file" "infolease_userdata_script" {
   template = "${file("${path.module}/include/infolease-userdata.sh.tpl")}"
 
   vars {
+    namespace               = "${var.namespace}"
     customer_number         = "${var.customer_number}"
     s3_configuration_bucket = "${var.s3_configuration_bucket}"
     s3_interfaces_bucket    = "${local.s3_interfaces_bucket}"
