@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cat > /setenv.sh <<EOT
+export NAMESPACE="${namespace}"
 export CUSTOMER_NUMBER="${customer_number}"
 export CUSTOMER_NAME="${customer_name}"
 export S3_CONFIG_BUCKET="${s3_configuration_bucket}"
