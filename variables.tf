@@ -98,10 +98,6 @@ variable "desired_infolease_servers" {
   default = 1
 }
 
-variable "service_dns_zone_name" {
-  type = "string"
-}
-
 variable "private_service_dns_zone_name" {
   type = "string"
 }
