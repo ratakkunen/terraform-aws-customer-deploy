@@ -159,7 +159,7 @@ data "aws_iam_policy_document" "route53" {
       "route53:ListResourceRecordSets",
     ]
 
-    resources = ["arn:aws:route53:::hostedzone/${aws_route53_zone.main.id}"]
+    resources = ["arn:aws:route53:::hostedzone/${data.aws_route53_zone.selected.id}"]
   }
 }
 

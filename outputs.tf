@@ -1,7 +1,3 @@
-output "aws_route53_private_zone_id" {
-  value = "${aws_route53_zone.main.zone_id}"
-}
-
 output "customer_bucket" {
   value = "${local.s3_interfaces_bucket}"
 }
