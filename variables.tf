@@ -102,6 +102,10 @@ variable "service_dns_zone_name" {
   type = "string"
 }
 
+variable "private_service_dns_zone_name" {
+  type = "string"
+}
+
 variable "s3_configuration_bucket" {
   type = "string"
 }

@@ -27,8 +27,8 @@ data "template_file" "rapport_userdata_script" {
     s3_insurance_bucket     = "${local.s3_insurance_bucket}"
     s3_bank_bucket          = "${local.s3_bank_bucket}"
     customer_name           = "${var.customer_name}"
-    route53_zone_id         = "${aws_route53_zone.main.zone_id}"
-    route53_zone_name       = "${aws_route53_zone.main.name}"
+    route53_zone_id         = "${data.aws_route53_zone.selected.zone_id}"
+    route53_zone_name       = "${data.aws_route53_zone.selected.name}"
     s3fs_iam_role           = "${aws_iam_role.rapport_instance_role.name}"
     aws_region              = "${data.aws_region.current.name}"
     ids_product             = "Rapport"
@@ -37,7 +37,7 @@ data "template_file" "rapport_userdata_script" {
 
     #nfs_hostname            = "${aws_efs_file_system.main.dns_name}"
     log_group_name   = "${var.customer_name}/rapport"
-    service_hostname = "rapport"
+    service_hostname = "rapport-${var.customer_name}"
     rapport_hostname = "${var.rapport_hostname}"
   }
 }
