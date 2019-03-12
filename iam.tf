@@ -70,6 +70,39 @@ data "aws_iam_policy_document" "to_s3_bucket" {
   }
 }
 
+# Policy: S3 files from EC2
+data "aws_iam_policy_document" "to_s3_files_bucket" {
+  statement {
+    sid     = "ListBuckets"
+    effect  = "Allow"
+    actions = ["s3:ListBucket"]
+
+    resources = [
+      "arn:aws:s3:::${local.s3_interfaces_bucket}",
+      "arn:aws:s3:::${local.s3_origination_bucket}",
+      "arn:aws:s3:::${local.s3_insurance_bucket}",
+      "arn:aws:s3:::${local.s3_bank_bucket}",
+    ]
+  }
+
+  statement {
+    sid     = "CRUDObjects"
+    effect  = "Allow"
+    actions = ["s3:*"]
+
+    resources = [
+      "arn:aws:s3:::${local.s3_interfaces_bucket}",
+      "arn:aws:s3:::${local.s3_interfaces_bucket}/*",
+      "arn:aws:s3:::${local.s3_origination_bucket}",
+      "arn:aws:s3:::${local.s3_origination_bucket}/*",
+      "arn:aws:s3:::${local.s3_insurance_bucket}",
+      "arn:aws:s3:::${local.s3_insurance_bucket}/*",
+      "arn:aws:s3:::${local.s3_bank_bucket}",
+      "arn:aws:s3:::${local.s3_bank_bucket}/*",
+    ]
+  }
+}
+
 # Policy: IAM SendCommand
 data "aws_iam_policy_document" "ssm_sendcommand" {
   statement {
