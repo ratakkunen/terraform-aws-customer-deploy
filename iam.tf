@@ -78,10 +78,10 @@ data "aws_iam_policy_document" "to_s3_files_bucket" {
     actions = ["s3:ListBucket"]
 
     resources = [
-      "arn:aws:s3:::${local.s3_interfaces_bucket}",
-      "arn:aws:s3:::${local.s3_origination_bucket}",
-      "arn:aws:s3:::${local.s3_insurance_bucket}",
-      "arn:aws:s3:::${local.s3_bank_bucket}",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_interfaces_bucket}",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_origination_bucket}",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_insurance_bucket}",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_bank_bucket}",
     ]
   }
 
@@ -91,14 +91,14 @@ data "aws_iam_policy_document" "to_s3_files_bucket" {
     actions = ["s3:*"]
 
     resources = [
-      "arn:aws:s3:::${local.s3_interfaces_bucket}",
-      "arn:aws:s3:::${local.s3_interfaces_bucket}/*",
-      "arn:aws:s3:::${local.s3_origination_bucket}",
-      "arn:aws:s3:::${local.s3_origination_bucket}/*",
-      "arn:aws:s3:::${local.s3_insurance_bucket}",
-      "arn:aws:s3:::${local.s3_insurance_bucket}/*",
-      "arn:aws:s3:::${local.s3_bank_bucket}",
-      "arn:aws:s3:::${local.s3_bank_bucket}/*",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_interfaces_bucket}",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_interfaces_bucket}/*",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_origination_bucket}",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_origination_bucket}/*",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_insurance_bucket}",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_insurance_bucket}/*",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_bank_bucket}",
+      "arn:aws:s3:::${var.namespace}-${var.environment}-${local.s3_bank_bucket}/*",
     ]
   }
 }
