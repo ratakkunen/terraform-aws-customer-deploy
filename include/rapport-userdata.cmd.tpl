@@ -1,6 +1,6 @@
 <script>
 echo set "NAMESPACE=${namespace}" > c:\setenv.cmd
-echo set "CUSTOMER_NUMBER=${customer_number}" > c:\setenv.cmd
+echo set "CUSTOMER_NUMBER=${customer_number}" >> c:\setenv.cmd
 echo set "CUSTOMER_NAME=${customer_name}" >> c:\setenv.cmd
 echo set "S3_CONFIG_BUCKET=${s3_configuration_bucket}" >> c:\setenv.cmd
 echo set "S3_INTERFACES_BUCKET=${s3_interfaces_bucket}" >> c:\setenv.cmd
