@@ -1,5 +1,5 @@
 data "template_file" "s3_interfaces_policy" {
-  template = "${file("include/interfaces_bucket_policy.tpl")}"
+  template = "${file("${path.module}/include/interfaces_bucket_policy.tpl")}"
 
   vars {
     account_id                     = "${data.aws_caller_identity.current.account_id}"
@@ -23,7 +23,7 @@ module "customer_s3_bucket" {
 }
 
 data "template_file" "s3_origination_policy" {
-  template = "${file("include/origination_bucket_policy.tpl")}"
+  template = "${file("${path.module}/include/origination_bucket_policy.tpl")}"
 
   vars {
     account_id                     = "${data.aws_caller_identity.current.account_id}"
@@ -47,7 +47,7 @@ module "origination_s3_bucket" {
 }
 
 data "template_file" "s3_insurance_policy" {
-  template = "${file("include/insurance_bucket_policy.tpl")}"
+  template = "${file("${path.module}/include/insurance_bucket_policy.tpl")}"
 
   vars {
     account_id                     = "${data.aws_caller_identity.current.account_id}"
@@ -71,7 +71,7 @@ module "insurance_s3_bucket" {
 }
 
 data "template_file" "s3_bank_policy" {
-  template = "${file("include/bank_bucket_policy.tpl")}"
+  template = "${file("${path.module}/include/bank_bucket_policy.tpl")}"
 
   vars {
     account_id                     = "${data.aws_caller_identity.current.account_id}"
