@@ -1,5 +1,5 @@
 module "customer_s3_bucket" {
-  source                       = "git::https://github.com/IDS-Inc/terraform-aws-s3-bucket.git?ref=master"
+  source                       = "git::https://github.com/IDS-Inc/terraform-aws-s3-bucket.git?ref=0.4.1"
   name                         = "${local.s3_interfaces_bucket}"
   stage                        = "${var.environment}"
   namespace                    = "${var.namespace}"
@@ -12,7 +12,7 @@ module "customer_s3_bucket" {
 }
 
 module "origination_s3_bucket" {
-  source                       = "git::https://github.com/IDS-Inc/terraform-aws-s3-bucket.git?ref=master"
+  source                       = "git::https://github.com/IDS-Inc/terraform-aws-s3-bucket.git?ref=0.4.1"
   name                         = "${local.s3_origination_bucket}"
   stage                        = "${var.environment}"
   namespace                    = "${var.namespace}"
@@ -25,7 +25,7 @@ module "origination_s3_bucket" {
 }
 
 module "insurance_s3_bucket" {
-  source                       = "git::https://github.com/IDS-Inc/terraform-aws-s3-bucket.git?ref=master"
+  source                       = "git::https://github.com/IDS-Inc/terraform-aws-s3-bucket.git?ref=0.4.1"
   name                         = "${local.s3_insurance_bucket}"
   stage                        = "${var.environment}"
   namespace                    = "${var.namespace}"
@@ -38,7 +38,7 @@ module "insurance_s3_bucket" {
 }
 
 module "bank_s3_bucket" {
-  source                       = "git::https://github.com/IDS-Inc/terraform-aws-s3-bucket.git?ref=master"
+  source                       = "git::https://github.com/IDS-Inc/terraform-aws-s3-bucket.git?ref=0.4.1"
   name                         = "${local.s3_bank_bucket}"
   stage                        = "${var.environment}"
   namespace                    = "${var.namespace}"
