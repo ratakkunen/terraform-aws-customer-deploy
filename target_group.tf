@@ -11,8 +11,13 @@ resource "aws_lb_listener_rule" "il_http" {
   listener_arn = "${var.alb_http_listener_arn}"
 
   action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.infolease.arn}"
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    } 
   }
 
   condition {
@@ -50,10 +55,10 @@ resource "aws_lb_target_group" "infolease" {
   }
 
   health_check {
-    interval            = "30"
-    path                = "/demoserver.html"
-    healthy_threshold   = "3"
-    unhealthy_threshold = "5"
+    interval            = "60"
+    path                = "/webil/status"
+    healthy_threshold   = "10"
+    unhealthy_threshold = "10"
   }
 
   lifecycle {
@@ -74,8 +79,13 @@ resource "aws_lb_listener_rule" "rapport_http" {
   listener_arn = "${var.alb_http_listener_arn}"
 
   action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.rapport.arn}"
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }  
   }
 
   condition {
@@ -115,7 +125,7 @@ resource "aws_lb_target_group" "rapport" {
   health_check {
     interval            = "30"
     path                = "/demoserver.html"
-    healthy_threshold   = "3"
+    healthy_threshold   = "5"
     unhealthy_threshold = "5"
   }
 }
@@ -133,8 +143,13 @@ resource "aws_lb_listener_rule" "reporting_http" {
   listener_arn = "${var.alb_http_listener_arn}"
 
   action {
-    type             = "forward"
-    target_group_arn = "${aws_lb_target_group.reporting.arn}"
+      type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
 
   condition {
@@ -177,8 +192,8 @@ resource "aws_lb_target_group" "reporting" {
 
   health_check {
     interval            = "30"
-    path                = "/demoserver.html"
-    healthy_threshold   = "3"
-    unhealthy_threshold = "5"
+    path                = "/ids-reporting/Login"
+    healthy_threshold   = "10"
+    unhealthy_threshold = "10"
   }
 }
