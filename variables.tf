@@ -182,6 +182,5 @@ variable "credstash_kms_arn" {
 
 variable "namespace" {
   type        = "string"
-  default     = "idsgrp"
   description = "The prefix namespace for all things cloud (e.g. idsgrp or ids)"
 }
